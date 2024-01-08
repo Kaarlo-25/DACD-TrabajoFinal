@@ -21,8 +21,8 @@ public class JMSWeatherStore implements EventPublisher {
 		Gson gson = new Gson();
 		String event = gson.toJson(weather);
 		try {
-			ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(brokerURL);
-			Connection connection = connectionFactory.createConnection();
+			ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(brokerURL);
+			Connection connection = (Connection) connectionFactory.createConnection();
 			connection.start();
 			Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 			Destination destination = session.createTopic(subject);
@@ -32,6 +32,9 @@ public class JMSWeatherStore implements EventPublisher {
 			//connection.close();
 		} catch (JMSException e) {
 			System.out.println("ERROR: "+e);
+			throw new RuntimeException(e);
+		} catch (javax.jms.JMSException e) {
+			throw new RuntimeException(e);
 		}
 	}
 
