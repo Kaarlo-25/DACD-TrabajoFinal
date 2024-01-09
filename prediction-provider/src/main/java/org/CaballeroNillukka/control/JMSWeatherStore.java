@@ -1,7 +1,7 @@
 package org.CaballeroNillukka.control;
 
-import jakarta.jms.*;
 import org.CaballeroNillukka.model.Weather;
+import jakarta.jms.*;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import com.google.gson.Gson;
 
@@ -25,7 +25,7 @@ public class JMSWeatherStore implements EventPublisher {
 			javax.jms.Connection connection = connectionFactory.createConnection();
 			connection.start();
 			javax.jms.Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-			javax.jms.Topic destination = session.createTopic(subject);
+			javax.jms.Queue destination = session.createQueue(subject);
 			javax.jms.MessageProducer producer = session.createProducer(destination);
 			javax.jms.TextMessage message = session.createTextMessage(event);
 			producer.send(message);

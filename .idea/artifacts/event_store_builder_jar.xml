@@ -3,9 +3,9 @@
     <output-path>$PROJECT_DIR$/out/artifacts/event_store_builder_jar</output-path>
     <root id="archive" name="event-store-builder.jar">
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/event-store-builder/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/datalake-builder/META-INF/MANIFEST.MF" />
       </element>
-      <element id="module-output" name="event-store-builder" />
+      <element id="module-output" name="datalake-builder" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.32/slf4j-api-1.7.32.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/jakarta/jms/jakarta.jms-api/3.1.0/jakarta.jms-api-3.1.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/xerial/sqlite-jdbc/3.42.0.0/sqlite-jdbc-3.42.0.0.jar" path-in-jar="/" />

@@ -14,6 +14,7 @@ public class JMSReceiver implements EventSuscriptor {
 		this.clientID = clientID;
 	}
 
+	//Methods
 	public void startListening(EventStorer eventStorer) {
 		try {
 			MessageConsumer consumer = createSubscriber();
@@ -34,14 +35,13 @@ public class JMSReceiver implements EventSuscriptor {
 			System.err.println("ERROR: " + e.getMessage());
 		}
 	}
-
 	private MessageConsumer createSubscriber() throws JMSException {
 		ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(brokerURL);
 		Connection connection = connectionFactory.createConnection();
 		connection.setClientID(clientID);
 		connection.start();
 		Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-		Topic topic = session.createTopic(subject);
-		return session.createDurableConsumer(topic, "Kaarlo");
+		Queue queue = session.createQueue(subject);
+		return session.createConsumer(queue);
 	}
 }
