@@ -41,7 +41,7 @@ public class JMSReceiver implements EventSuscriptor {
 		connection.setClientID(clientID);
 		connection.start();
 		Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-		Queue queue = session.createQueue(subject);
-		return session.createConsumer(queue);
+		Topic topic = session.createTopic(subject);
+		return session.createDurableConsumer(topic, "Kaarlo");
 	}
 }
